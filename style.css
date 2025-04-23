@@ -416,7 +416,13 @@ body {
 .code-wrapper pre { margin: 0; padding: 15px; overflow-x: auto; background-color: transparent; color: var(--code-text); font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.9em; line-height: 1.5; white-space: pre; }
 .code-wrapper pre code { display: block; box-sizing: border-box; }
 .ai-message strong { font-weight: bold; }
-.ai-message em { font-style: italic; }
+.ai-message em {
+    font-style: italic; /* Zaten eğik yapar */
+    opacity: 0.75; /* Biraz daha soluk görünmesi için opaklığı azalt */
+    /* Alternatif olarak, daha açık bir renk kullanabilirsiniz: */
+    /* color: var(--text-light); */
+    /* Ancak opacity genellikle daha iyi çalışır */
+}
 /* Inline code */
 .ai-message div > p code,
 .ai-message div > li code,
