@@ -1,68 +1,219 @@
+/* --- START OF FILE style.css --- */
+
 /* --- Genel ve Düzen --- */
 :root {
-    --primary-bg: #f0f2f5;
-    --secondary-bg: #ffffff;
-    --sidebar-bg: #e4e6eb;
-    --border-color: #dddfe2;
-    --text-color: #1c1e21;
-    --text-light: #606770;
-    --accent-color: #3b5998;
-    --accent-hover: #334d84;
-    --user-message-bg: #0084ff;
-    --ai-message-bg: #e4e6eb;
+    /* Light Theme (Default) */
+    --primary-bg: #f0f2f5;          /* Ana arkaplan */
+    --secondary-bg: #ffffff;        /* İkincil arkaplan (kartlar, modallar, sohbet) */
+    --sidebar-bg: #e4e6eb;          /* Kenar çubuğu arkaplanı */
+    --border-color: #dddfe2;        /* Kenarlıklar */
+    --text-color: #1c1e21;          /* Ana metin rengi */
+    --text-light: #606770;          /* Daha açık metin rengi */
+    --accent-color: #3b5998;        /* Vurgu rengi (butonlar vb.) */
+    --accent-hover: #334d84;        /* Vurgu hover rengi */
+    --user-message-bg: #0084ff;     /* Kullanıcı mesaj balonu */
+    --user-message-text: #ffffff;   /* Kullanıcı mesaj metni */
+    --ai-message-bg: #e4e6eb;       /* AI mesaj balonu */
+    --ai-message-text: #050505;     /* AI mesaj metni */
     --error-bg: #fdecea;
     --error-text: #a31a1a;
     --error-border: #f5c6cb;
-    --code-bg: #282c34;
-    --code-toolbar-bg: #3c4048;
-    --code-text: #abb2bf;
-    --code-lang-text: #abb2bf;
-    --code-border: #4a4f58;
+    --code-bg: #f5f5f5;             /* Açık tema kod arkaplanı */
+    --code-toolbar-bg: #e0e0e0;     /* Açık tema kod araç çubuğu */
+    --code-text: #333333;           /* Açık tema kod metni */
+    --code-lang-text: #555555;      /* Açık tema kod dili metni */
+    --code-border: #cccccc;         /* Açık tema kod kenarlığı */
     --button-secondary-bg: #e4e6eb;
     --button-secondary-hover: #d8dadf;
     --modal-bg: rgba(0, 0, 0, 0.6);
-    --avatar-base-size: 24px; /* Yeni değişken */
+    --avatar-base-size: 24px;       /* <-- This variable is used for positioning */
+    --scrollbar-thumb: #c1c1c1;
+    --scrollbar-track: var(--primary-bg);
+    --input-bg: #ffffff;
+    --input-text: var(--text-color);
+    --input-placeholder: #a0aec0;
+    --input-disabled-bg: #f0f2f5;
+    --link-color: var(--accent-color);
+    --link-hover-color: var(--accent-hover);
+    --active-item-bg: #cdd4e0; /* Aktif karakter */
+    --hover-item-bg: var(--secondary-bg); /* Hover karakter */
+    --icon-button-color: var(--text-light);
+    --icon-button-hover-bg: rgba(0, 0, 0, 0.1);
+    --icon-button-hover-color: var(--text-color);
+    --modal-content-bg: var(--secondary-bg);
+    --modal-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --fieldset-border: var(--border-color);
+    --legend-color: var(--accent-color);
+    --system-message-border: var(--border-color);
+    --system-message-text: var(--text-light);
+    --loading-message-text: var(--text-light);
+    --message-action-bg: var(--secondary-bg);
+    --message-action-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --message-action-hover-bg: rgba(0, 0, 0, 0.1);
+    --message-action-delete-hover-color: var(--error-text);
+    --message-action-delete-hover-bg: rgba(163, 26, 26, 0.1);
+    --inline-code-bg: rgba(0,0,0,0.06);
+    --inline-code-text: #333;
+    --inline-code-border: rgba(0,0,0,0.1);
+}
+
+body.dark-mode {
+    /* Dark Theme Overrides */
+    --primary-bg: #18191a;          /* Koyu ana arkaplan */
+    --secondary-bg: #242526;        /* Koyu ikincil arkaplan (kartlar, modal, sohbet) */
+    --sidebar-bg: #3a3b3c;          /* Koyu kenar çubuğu */
+    --border-color: #3e4042;        /* Koyu kenarlıklar */
+    --text-color: #e4e6eb;          /* Koyu tema ana metin */
+    --text-light: #b0b3b8;          /* Koyu tema açık metin */
+    --accent-color: #4a90e2;        /* Koyu tema vurgu (biraz daha parlak mavi?) */
+    --accent-hover: #5a9ee6;        /* Koyu tema vurgu hover */
+    --user-message-bg: #0078d4;     /* Koyu tema kullanıcı mesajı */
+    --user-message-text: #ffffff;
+    --ai-message-bg: #3a3b3c;       /* Koyu tema AI mesajı */
+    --ai-message-text: #e4e6eb;     /* Koyu tema AI metni */
+    --error-bg: #4d2d2d;
+    --error-text: #ffabab;
+    --error-border: #8b4040;
+    --code-bg: #282c34;             /* Koyu tema kod arkaplanı (zaten koyuydu) */
+    --code-toolbar-bg: #3c4048;     /* Koyu tema kod araç çubuğu (zaten koyuydu) */
+    --code-text: #abb2bf;           /* Koyu tema kod metni (zaten koyuydu) */
+    --code-lang-text: #abb2bf;
+    --code-border: #4a4f58;
+    --button-secondary-bg: #3a3b3c;
+    --button-secondary-hover: #4e4f50;
+    --modal-bg: rgba(0, 0, 0, 0.7); /* Modalı biraz daha koyu yap */
+    --scrollbar-thumb: #555;
+    --scrollbar-track: var(--primary-bg);
+    --input-bg: #3a3b3c;
+    --input-text: var(--text-color);
+    --input-placeholder: #7e8288;
+    --input-disabled-bg: #2f3031;
+    --link-color: var(--accent-color);
+    --link-hover-color: var(--accent-hover);
+    --active-item-bg: #4e4f50;
+    --hover-item-bg: #3a3b3c;
+    --icon-button-color: var(--text-light);
+    --icon-button-hover-bg: rgba(255, 255, 255, 0.1);
+    --icon-button-hover-color: var(--text-color);
+    --modal-content-bg: var(--secondary-bg);
+    --modal-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    --fieldset-border: var(--border-color);
+    --legend-color: var(--accent-color);
+    --system-message-border: var(--border-color);
+    --system-message-text: var(--text-light);
+    --loading-message-text: var(--text-light);
+    --message-action-bg: var(--secondary-bg);
+    --message-action-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --message-action-hover-bg: rgba(255, 255, 255, 0.1);
+    --message-action-delete-hover-color: var(--error-text);
+    --message-action-delete-hover-bg: rgba(255, 171, 171, 0.1);
+    --inline-code-bg: rgba(255,255,255,0.1);
+    --inline-code-text: #ccc;
+    --inline-code-border: rgba(255,255,255,0.2);
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--primary-bg);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    color: var(--text-color);
+    background-color: var(--primary-bg); /* Variable used */
+    display: flex; /* Ensure body is flex container */
+    flex-direction: column; /* Stack children vertically */
+    height: 100vh; /* Full viewport height */
+    color: var(--text-color); /* Variable used */
     overflow: hidden; /* Sayfa kaymasını engelle */
+    /* Add transition for smooth theme change */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Add transitions to other elements */
+.sidebar, .chat-container, .chat-header, .input-area, .modal-content,
+.character-item, .user-message > div:not(.message-avatar), .ai-message > div:not(.message-avatar),
+#userInput, #sendButton, .header-button, .modal button, .modal input, .modal textarea, .modal select,
+.code-wrapper, .code-toolbar, .code-wrapper pre, .message-action-btn,
+.toggle-settings-btn, .inline-create-btn, .error-message, .system-message,
+.provider-settings input, .sidebar-header, .sidebar-title,
+.message-actions {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure icon transitions smoothly if needed, e.g., for color */
+.icon-button i, .header-button i, #sendButton i {
+    transition: color 0.3s ease;
+}
+
+/* --- START: Security Warning Modifications --- */
 .security-warning {
     background-color: #fff3cd;
     color: #856404;
-    padding: 10px 15px;
+    padding: 10px 40px 10px 15px; /* Increased right padding for button */
     text-align: center;
     font-size: 13px;
     border-bottom: 1px solid #ffeeba;
     font-weight: bold;
-    flex-shrink: 0; /* Küçülmesin */
+    flex-shrink: 0; /* Prevent shrinking */
+    position: relative; /* Context for absolute positioned button */
+    display: flex; /* Align text and button */
+    justify-content: center; /* Center the content (text) */
+    align-items: center; /* Vertically align items */
 }
-.security-warning i { /* İkon için */
+.security-warning > span { /* Target the text span (assuming text is wrapped in span) */
+    flex-grow: 1; /* Allow text to take up space */
+    text-align: center; /* Keep text centered */
+}
+body.dark-mode .security-warning {
+    background-color: #3b3a2a; /* Dark yellow */
+    color: #ffeeba;
+    border-bottom-color: #545031;
+}
+.security-warning i { /* Existing icon style */
     margin-right: 5px;
 }
+
+/* Style for the new close button */
+.close-warning-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Position on the right */
+    transform: translateY(-50%); /* Center vertically */
+    background: none;
+    border: none;
+    font-size: 22px; /* Size of '×' character */
+    font-weight: bold;
+    color: #856404; /* Match text color */
+    cursor: pointer;
+    padding: 0 5px; /* Clickable area */
+    line-height: 1; /* Ensure tight vertical fit */
+    opacity: 0.6; /* Slightly faded */
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.close-warning-btn:hover {
+    opacity: 1; /* Fully opaque on hover */
+    color: #533f03; /* Darker on hover */
+}
+
+/* Dark mode styles for the close button */
+body.dark-mode .close-warning-btn {
+    color: #ffeeba; /* Match dark mode text */
+}
+body.dark-mode .close-warning-btn:hover {
+    color: #fff; /* Brighter on hover */
+}
+/* --- END: Security Warning Modifications --- */
 
 
 .app-container {
     display: flex;
-    flex-grow: 1; /* Kalan alanı doldur */
-    height: calc(100vh - 45px); /* Yüksekliği ayarla (güvenlik uyarısı yüksekliği kadar azalt) */
+    flex-grow: 1; /* Fill remaining space in the body */
     overflow: hidden; /* İçerik taşmasını engelle */
 }
 
 /* --- Kenar Çubuğu --- */
 .sidebar {
     width: 280px;
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--border-color);
+    background-color: var(--sidebar-bg); /* Variable used */
+    border-right: 1px solid var(--border-color); /* Variable used */
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -71,7 +222,7 @@ body {
 
 .sidebar-header {
     padding: 10px 15px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); /* Variable used */
     display: flex;
     justify-content: flex-start; /* Butonları sola yasla */
     align-items: center;
@@ -80,13 +231,13 @@ body {
 }
 .sidebar-title {
     padding: 5px 15px 10px 15px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); /* Variable used */
     flex-shrink: 0;
 }
 .sidebar-title h2 {
     margin: 0;
     font-size: 1.1em;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Variable used */
     text-align: center; /* Başlığı ortala */
 }
 
@@ -94,18 +245,28 @@ body {
 .icon-button {
     background: none;
     border: none;
-    color: var(--text-light);
+    color: var(--icon-button-color); /* Variable used */
     font-size: 1.3em; /* İkonları biraz büyüt */
     cursor: pointer;
     padding: 5px;
     border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s; /* Keep specific faster transition for hover */
 }
 
 .icon-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--text-color);
+    background-color: var(--icon-button-hover-bg); /* Variable used */
+    color: var(--icon-button-hover-color); /* Variable used */
 }
+
+/* --- Theme Toggle Buton Animasyonu (opsiyonel) --- */
+#theme-toggle-btn i {
+    transition: transform 0.3s ease; /* İkon dönüşü için */
+}
+/* Optional rotation */
+/* body.dark-mode #theme-toggle-btn i {
+    transform: rotate(180deg);
+} */
+
 
 .character-list {
     list-style: none;
@@ -113,24 +274,33 @@ body {
     margin: 0;
     overflow-y: auto; /* Sadece liste kaydırılsın */
     flex-grow: 1; /* Kalan alanı doldur */
+    /* Scrollbar Stilleri */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
+.character-list::-webkit-scrollbar { width: 8px; }
+.character-list::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+.character-list::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 4px; border: 2px solid var(--scrollbar-track); }
+
 
 .character-item {
     padding: 10px 15px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); /* Variable used */
     cursor: pointer;
     display: flex;
     align-items: center;
-    transition: background-color 0.2s;
     position: relative; /* Butonları konumlandırmak için */
 }
 
 .character-item:hover {
-    background-color: var(--secondary-bg);
+    background-color: var(--hover-item-bg); /* Variable used */
 }
 .character-item.active {
-    background-color: #cdd4e0; /* Daha belirgin aktif */
+    background-color: var(--active-item-bg); /* Variable used */
     font-weight: bold;
+}
+.character-item.active .character-name {
+    color: var(--text-color); /* Ensure text is readable on active bg */
 }
 
 
@@ -143,6 +313,9 @@ body {
     background-color: #ccc; /* Resim yoksa */
     flex-shrink: 0;
 }
+body.dark-mode .character-avatar-small {
+    background-color: #555;
+}
 
 .character-name {
     flex-grow: 1;
@@ -151,6 +324,10 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-right: 5px; /* Butonlara yer aç */
+    color: var(--text-color); /* Ensure it inherits body color */
+}
+.character-item:hover .character-name {
+    color: var(--text-color); /* Hover rengini ayarla */
 }
 
 .character-item-buttons {
@@ -168,7 +345,7 @@ body {
 .icon-button-small {
     background: none;
     border: none;
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
     font-size: 0.9em;
     cursor: pointer;
     padding: 4px;
@@ -177,47 +354,48 @@ body {
     opacity: 1;
 }
 .icon-button-small:hover {
-     background-color: rgba(0, 0, 0, 0.15);
-     color: var(--text-color);
+     background-color: var(--icon-button-hover-bg); /* Variable used */
+     color: var(--icon-button-hover-color); /* Variable used */
 }
 
 
 .no-characters {
     padding: 20px;
     text-align: center;
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
     font-style: italic;
     /* JS ile display: none/block yapılır */
 }
 .inline-create-btn {
-    background: var(--accent-color);
-    color: white;
+    background: var(--accent-color); /* Variable used */
+    color: white; /* Keep white text on accent */
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
-    transition: background-color 0.2s;
     font-size: 0.9em;
     font-style: normal;
 }
 .inline-create-btn:hover {
-    background: var(--accent-hover);
+    background: var(--accent-hover); /* Variable used */
 }
 
 /* --- Sohbet Alanı --- */
 .chat-container {
-    flex-grow: 1;
+    flex-grow: 1; /* Kalan alanı doldurur */
     display: flex;
-    flex-direction: column;
-    background-color: var(--secondary-bg);
+    flex-direction: column; /* Çocukları dikeyde dizer */
+    background-color: var(--secondary-bg); /* Variable used */
+    overflow: hidden;
+    min-height: 0;
 }
 
 .chat-header {
     padding: 10px 20px;
-    border-bottom: 1px solid var(--border-color);
-    flex-shrink: 0;
-    background-color: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color); /* Variable used */
+    flex-shrink: 0; /* Başlık küçülmez */
+    background-color: var(--secondary-bg); /* Variable used */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -227,7 +405,7 @@ body {
 .chat-header h2 {
     margin: 0;
     font-size: 1.1em;
-    color: var(--text-color);
+    color: var(--text-color); /* Variable used */
     flex-grow: 1;
     margin-right: 15px;
     white-space: nowrap;
@@ -240,72 +418,86 @@ body {
     flex-shrink: 0;
 }
 .header-button {
-    background-color: var(--button-secondary-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    background-color: var(--button-secondary-bg); /* Variable used */
+    color: var(--text-color); /* Variable used */
+    border: 1px solid var(--border-color); /* Variable used */
     padding: 5px 12px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: background-color 0.2s, border-color 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 5px;
 }
 .header-button:hover {
-    background-color: var(--button-secondary-hover);
-    border-color: #caced4;
+    background-color: var(--button-secondary-hover); /* Variable used */
+    border-color: var(--button-secondary-hover); /* Adjust border on hover */
 }
 .header-button i {
     font-size: 1.1em;
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
 }
 .header-button:hover i {
-    color: var(--text-color);
+    color: var(--text-color); /* Variable used */
 }
 
 
+/* Chatbox (Mesajların olduğu alan) */
 .chatbox {
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    justify-content: flex-start;
 }
+.chatbox::-webkit-scrollbar { width: 8px; }
+.chatbox::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+.chatbox::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 4px; border: 2px solid var(--scrollbar-track); }
+
 
 /* --- Mesaj Stilleri (Avatar dahil) --- */
 .message {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     max-width: 85%;
     gap: 8px;
-    position: relative; /* Aksiyon butonları için */
+    position: relative; /* Needed for absolute positioning of actions */
+    word-wrap: break-word;
 }
 
 .message-avatar {
-    /* width ve height buradan kaldırıldı, JS ile ayarlanacak */
-    border-radius: 50%; /* Varsayılan yuvarlak, JS ile değiştirilebilir */
     flex-shrink: 0;
     background-color: #ccc;
     object-fit: cover;
-    /* Temel boyutu JS'nin okuyabilmesi için ekleyelim */
     width: var(--avatar-base-size);
     height: var(--avatar-base-size);
-    display: block; /* Inline stil sorunlarını önlemek için */
+    display: block;
+    margin-top: 5px; /* Add slight top margin to align better with first line of text */
+}
+body.dark-mode .message-avatar {
+    background-color: #555;
 }
 
-/* Mesaj İçerik Sarmalayıcı */
+/* Mesaj İçerik Sarmalayıcı (Bubble) - UPDATED PADDING */
 .message > div:not(.message-avatar) {
-    position: relative; /* Butonları konumlandırmak için */
+    /* position: relative; /* REMOVED - No longer needed here */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* İçeriği dikeyde sırala */
     overflow: visible;
-    padding: 10px 15px;
+    padding: 8px 15px; /* UPDATED: Reduced vertical padding */
     border-radius: 18px;
     line-height: 1.4;
     word-wrap: break-word;
     font-size: 0.95em;
+    /* Remove min-height if it exists somewhere else */
+    /* Ensure width adjusts to content */
+    width: fit-content; /* Try this */
+    max-width: 100%; /* Ensure it doesn't overflow message container */
 }
 
 .user-message {
@@ -313,17 +505,26 @@ body {
     flex-direction: row-reverse; /* Avatar sağa gelir */
 }
 .user-message > div:not(.message-avatar) {
-    background-color: var(--user-message-bg);
-    color: white;
+    background-color: var(--user-message-bg); /* Variable used */
+    color: var(--user-message-text); /* Variable used */
     border-bottom-right-radius: 5px;
-    align-items: flex-end; /* İçeriği sağa yasla */
+    align-items: flex-end; /* İçeriği (metin) sağa yasla */
 }
 .user-message .sender-tag.user-override-tag {
     font-size: 0.7em;
     opacity: 0.7;
     margin-bottom: 2px;
     text-align: right;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8); /* Keep light text */
+}
+body.dark-mode .user-message .sender-tag.user-override-tag {
+    color: rgba(255, 255, 255, 0.7); /* Slightly adjust if needed */
+}
+
+/* Kullanıcı mesaj balonundaki <p> etiketlerinin margin'ini sıfırla */
+.user-message > div:not(.message-avatar) p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 
@@ -332,41 +533,46 @@ body {
     flex-direction: row; /* Avatar solda (varsayılan) */
 }
 .ai-message > div:not(.message-avatar) {
-    background-color: var(--ai-message-bg);
-    color: #050505;
+    background-color: var(--ai-message-bg); /* Variable used */
+    color: var(--ai-message-text); /* Variable used */
     border-bottom-left-radius: 5px;
     align-items: flex-start; /* İçeriği sola yasla */
+    width: fit-content; /* Try this */
+    max-width: 100%;
 }
 .ai-message .sender-tag {
      display: block;
      font-size: 0.75em;
      font-weight: bold;
-     color: var(--text-light);
+     color: var(--text-light); /* Variable used */
      margin-bottom: 3px;
      opacity: 0.8;
  }
+/* AI mesaj balonundaki <p> etiketlerinin margin'ini sıfırla */
+.ai-message div:not(.message-avatar) p:first-child { margin-top: 0; }
+.ai-message div:not(.message-avatar) p:last-child { margin-bottom: 0; }
 
-/* --- YENİ: Loading Mesaj Stili --- */
+
+/* --- Loading Mesaj Stili --- */
 .loading-message {
-    align-self: flex-start; /* AI mesajı gibi solda */
+    align-self: flex-start;
     font-style: italic;
-    color: var(--text-light);
-    opacity: 0.8; /* Hafif soluk */
+    color: var(--loading-message-text); /* Variable used */
+    opacity: 0.8;
  }
 .loading-message > div:not(.message-avatar) {
-    background-color: var(--ai-message-bg); /* AI mesajı arkaplanı */
-    padding: 8px 12px; /* Biraz daha az padding olabilir */
-    border-radius: 18px; /* Aynı yuvarlaklık */
-    border-bottom-left-radius: 5px; /* Aynı köşe */
+    background-color: var(--ai-message-bg); /* Variable used */
+    padding: 8px 12px;
+    border-radius: 18px;
+    border-bottom-left-radius: 5px;
  }
 .loading-message .sender-tag {
-    font-weight: normal; /* Kalın olmasın */
-    margin-right: 5px; /* İkonla arası */
+    font-weight: normal;
+    margin-right: 5px;
 }
-/* --- BİTİŞ: Loading Mesaj Stili --- */
 
 
-/* Hata ve Sistem Mesajları (Avatarsız) */
+/* Hata ve Sistem Mesajları */
 .error-message, .system-message {
     display: block;
     padding: 10px 15px;
@@ -378,9 +584,9 @@ body {
     margin: 5px 0;
 }
 .error-message {
-    background-color: var(--error-bg);
-    color: var(--error-text);
-    border: 1px solid var(--error-border);
+    background-color: var(--error-bg); /* Variable used */
+    color: var(--error-text); /* Variable used */
+    border: 1px solid var(--error-border); /* Variable used */
     align-self: stretch;
     font-weight: normal;
 }
@@ -390,15 +596,19 @@ body {
     border-radius: 3px;
     font-family: monospace;
 }
+body.dark-mode .error-message code {
+    background-color: rgba(255,255,255,0.1);
+    color: var(--error-text);
+}
 
 .system-message {
     background-color: transparent;
-    color: var(--text-light);
+    color: var(--system-message-text); /* Variable used */
     align-self: center;
     text-align: center;
     font-style: italic;
     max-width: 85%;
-    border: 1px dashed var(--border-color);
+    border: 1px dashed var(--system-message-border); /* Variable used */
     border-radius: 8px;
 }
 .system-message i {
@@ -417,23 +627,26 @@ body {
 .code-wrapper pre code { display: block; box-sizing: border-box; }
 .ai-message strong { font-weight: bold; }
 .ai-message em {
-    font-style: italic; /* Zaten eğik yapar */
-    opacity: 0.75; /* Biraz daha soluk görünmesi için opaklığı azalt */
-    /* Alternatif olarak, daha açık bir renk kullanabilirsiniz: */
-    /* color: var(--text-light); */
-    /* Ancak opacity genellikle daha iyi çalışır */
+    font-style: italic;
+    opacity: 0.85;
+}
+body.dark-mode .ai-message em {
+    opacity: 0.75;
 }
 /* Inline code */
 .ai-message div > p code,
 .ai-message div > li code,
-.ai-message div > div:not(.code-wrapper) code:not(pre code) { /* Sadece metin içindeki kodlar */
-    background-color: rgba(0,0,0,0.06);
+.ai-message div > div:not(.code-wrapper) code:not(pre code),
+/* Add user messages for inline code styling too */
+.user-message div > p code,
+.user-message div > div code:not(pre code) {
+    background-color: var(--inline-code-bg); /* Variable used */
     padding: 0.1em 0.4em;
     border-radius: 4px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.9em;
-    color: #333;
-    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--inline-code-text); /* Variable used */
+    border: 1px solid var(--inline-code-border); /* Variable used */
     word-break: break-word;
 }
 /* Lists and Paragraphs within AI message content */
@@ -445,15 +658,15 @@ body {
 .ai-message div:not(.message-avatar) ol ul { margin-top: 0.2em; margin-bottom: 0.2em; padding-left: 20px; }
 .ai-message div:not(.message-avatar) li { margin-bottom: 0.3em; line-height: 1.5; }
 .ai-message div:not(.message-avatar) p { margin-top: 0.5em; margin-bottom: 0.5em; }
-.ai-message div:not(.message-avatar) p:first-child { margin-top: 0; }
-.ai-message div:not(.message-avatar) p:last-child { margin-bottom: 0; }
+/* Resetting paragraph margins handled earlier */
+
 
 /* --- Giriş Alanı --- */
 .input-area {
     display: flex;
     padding: 10px 20px;
-    background-color: var(--secondary-bg);
-    border-top: 1px solid var(--border-color);
+    background-color: var(--secondary-bg); /* Variable used */
+    border-top: 1px solid var(--border-color); /* Variable used */
     flex-shrink: 0;
     align-items: flex-end;
     gap: 10px;
@@ -462,35 +675,45 @@ body {
 #userInput {
     flex-grow: 1;
     padding: 10px 15px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); /* Variable used */
     border-radius: 18px;
     font-size: 15px;
     outline: none;
     resize: none;
     line-height: 1.4;
-    max-height: 150px;
-    overflow-y: auto;
+    max-height: 150px; /* Textarea büyüyebilir ama scroll olur */
+    overflow-y: auto; /* Textarea içi scroll */
     font-family: inherit;
+    background-color: var(--input-bg); /* Variable used */
+    color: var(--input-text); /* Variable used */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
+#userInput::-webkit-scrollbar { width: 6px; }
+#userInput::-webkit-scrollbar-track { background: transparent; }
+#userInput::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 3px; }
+#userInput::placeholder {
+    color: var(--input-placeholder); /* Variable used */
+}
+
 #userInput:focus {
-     border-color: var(--accent-color);
-     box-shadow: 0 0 0 2px rgba(59, 89, 152, 0.2);
+     border-color: var(--accent-color); /* Variable used */
+     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
 }
 #userInput:disabled {
-    background-color: #f0f2f5; /* Devre dışıyken hafif gri */
+    background-color: var(--input-disabled-bg); /* Variable used */
     cursor: not-allowed;
 }
 
 #sendButton {
     padding: 0 15px;
     height: 40px;
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--accent-color); /* Variable used */
+    color: white; /* Keep white */
     border: none;
     border-radius: 18px;
     cursor: pointer;
     font-size: 1.3em;
-    transition: background-color 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -498,11 +721,12 @@ body {
 }
 
 #sendButton:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--accent-hover); /* Variable used */
 }
 #sendButton:disabled {
-     background-color: #a0aec0;
+     background-color: color-mix(in srgb, var(--accent-color) 50%, var(--primary-bg));
      cursor: not-allowed;
+     opacity: 0.6;
  }
 
 /* --- Modal Stilleri İyileştirmeleri --- */
@@ -514,8 +738,8 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: var(--modal-bg);
+    overflow: hidden; /* Modalın kendisi kaymasın */
+    background-color: var(--modal-bg); /* Variable used */
     animation: fadeIn 0.3s ease-out;
 }
 
@@ -526,21 +750,27 @@ body {
 
 
 .modal-content {
-    background-color: var(--secondary-bg);
+    background-color: var(--modal-content-bg); /* Variable used */
     margin: 5% auto;
     padding: 25px 30px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); /* Variable used */
     width: 85%;
-    max-width: 700px; /* Genişlik sabit veya ihtiyaca göre ayarlanabilir */
+    max-width: 700px;
     border-radius: 8px;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    max-height: 85vh;
-    overflow-y: auto;
+    box-shadow: var(--modal-shadow); /* Variable used */
+    max-height: 85vh; /* İçerik kaydırılacak */
+    overflow-y: auto; /* Sadece içerik kaydırılsın */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--secondary-bg); /* Use modal bg for track */
 }
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--secondary-bg); } /* Use modal bg */
+.modal-content::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 4px; border: 2px solid var(--secondary-bg); } /* Use modal bg */
+
 
 .close-btn {
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
     position: absolute;
     top: 10px;
     right: 15px;
@@ -553,14 +783,14 @@ body {
 
 .close-btn:hover,
 .close-btn:focus {
-    color: var(--text-color);
+    color: var(--text-color); /* Variable used */
 }
 
 .modal h2 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: var(--accent-color);
-    border-bottom: 1px solid var(--border-color);
+    color: var(--accent-color); /* Variable used */
+    border-bottom: 1px solid var(--border-color); /* Variable used */
     padding-bottom: 10px;
     font-size: 1.3em;
 }
@@ -570,7 +800,7 @@ body {
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 0.9em;
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
     margin-top: 12px;
 }
 
@@ -582,30 +812,40 @@ body {
 .modal select {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); /* Variable used */
     border-radius: 6px;
     font-size: 14px;
     box-sizing: border-box;
     margin-bottom: 8px;
+    background-color: var(--input-bg); /* Variable used */
+    color: var(--input-text); /* Variable used */
 }
 .modal textarea {
     resize: vertical;
     min-height: 60px;
     line-height: 1.5;
+     /* Scrollbar Stilleri */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--input-bg); /* Use input bg for track */
 }
+.modal textarea::-webkit-scrollbar { width: 6px; }
+.modal textarea::-webkit-scrollbar-track { background: transparent; }
+.modal textarea::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 3px; }
+
 .modal small {
     font-size: 0.8em;
-    color: var(--text-light);
+    color: var(--text-light); /* Variable used */
     display: block;
     margin-top: -5px;
     margin-bottom: 10px;
 }
 .modal small a { /* Yardımcı linkler */
-    color: var(--accent-color);
+    color: var(--link-color); /* Variable used */
     text-decoration: none;
 }
 .modal small a:hover {
     text-decoration: underline;
+    color: var(--link-hover-color); /* Variable used */
 }
 .modal input[type="number"] { /* Sayı inputları */
     width: 80px; /* Daha dar olabilir */
@@ -617,14 +857,21 @@ body {
 .modal select:focus,
 .modal input[type="number"]:focus {
     outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(59, 89, 152, 0.2);
+    border-color: var(--accent-color); /* Variable used */
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+.modal input:disabled,
+.modal textarea:disabled,
+.modal select:disabled {
+    background-color: var(--input-disabled-bg); /* Variable used */
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Daha Fazla Ayar Butonu */
 .toggle-settings-btn {
     background: none;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); /* Variable used */
     padding: 8px 15px;
     width: 100%;
     text-align: left;
@@ -633,14 +880,14 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 6px;
-    color: var(--text-light);
-    transition: background-color 0.2s;
+    color: var(--text-light); /* Variable used */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .toggle-settings-btn:hover {
-    background-color: var(--primary-bg);
+    background-color: color-mix(in srgb, var(--border-color) 30%, transparent);
+    color: var(--text-color); /* Variable used */
 }
 .toggle-settings-btn i {
     transition: transform 0.3s ease;
@@ -658,22 +905,25 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
     border: none;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color); /* Variable used */
 }
 #more-character-settings h3 {
     margin-bottom: 15px;
     font-size: 1.1em;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Variable used */
 }
 .modal fieldset {
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--fieldset-border); /* Variable used */
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 20px; /* Fieldset arası boşluk */
 }
+.modal fieldset:disabled { /* Changed from Placeholder Fieldset Opacity */
+    opacity: 0.6; /* Disabled fieldset */
+}
 .modal fieldset legend {
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--legend-color); /* Variable used */
     padding: 0 10px;
     font-size: 1em; /* Biraz büyüt */
     margin-bottom: 10px; /* Legend altı boşluk */
@@ -685,11 +935,12 @@ body {
     margin-top: 25px;
     justify-content: flex-end;
     padding-top: 15px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color); /* Variable used */
 }
 
 .modal button[type="submit"],
-.modal button.cancel-btn {
+.modal button.cancel-btn,
+#confirm-import-btn /* Yeni butonu da aynı stile dahil et */ {
     padding: 10px 25px;
     display: inline-block;
     width: auto;
@@ -697,26 +948,27 @@ body {
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-.modal button[type="submit"] {
-    background-color: var(--accent-color);
-    color: white;
-    border: 1px solid var(--accent-color);
+.modal button[type="submit"],
+#confirm-import-btn /* Yeni buton için de */ {
+    background-color: var(--accent-color); /* Variable used */
+    color: white; /* Keep white */
+    border: 1px solid var(--accent-color); /* Variable used */
 }
-.modal button[type="submit"]:hover {
-    background-color: var(--accent-hover);
-    border-color: var(--accent-hover);
+.modal button[type="submit"]:hover,
+#confirm-import-btn:hover /* Yeni buton için de */ {
+    background-color: var(--accent-hover); /* Variable used */
+    border-color: var(--accent-hover); /* Variable used */
 }
 
 .modal button.cancel-btn {
-    background-color: var(--button-secondary-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    background-color: var(--button-secondary-bg); /* Variable used */
+    color: var(--text-color); /* Variable used */
+    border: 1px solid var(--border-color); /* Variable used */
 }
 .modal button.cancel-btn:hover {
-    background-color: var(--button-secondary-hover);
-    border-color: #caced4;
+    background-color: var(--button-secondary-hover); /* Variable used */
+    border-color: var(--button-secondary-hover); /* Use bg color for border */
 }
 
 /* Ayarlar Modalı Grid İçin Label/Input Ayarı */
@@ -747,7 +999,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
-    align-items: flex-end;
+    align-items: center;
 }
 .api-selection-fieldset label {
      margin-top: 5px;
@@ -758,21 +1010,21 @@ body {
      margin-bottom: 0;
 }
 
-/* --- Mesaj Aksiyon Butonları --- */
+/* --- Mesaj Aksiyon Butonları (KOMPLE YENİLENDİ) --- */
 .message-actions {
-    position: absolute;
-    top: -5px; /* Hafif yukarıda */
-    right: 0px; /* Tam sağda (AI Mesajları için) */
-    display: flex;
-    gap: 3px;
-    background-color: var(--secondary-bg); /* Arkaplanı olsun */
+    display: flex;          /* Flexbox düzeni */
+    gap: 3px;               /* Butonlar arası boşluk */
+    background-color: var(--message-action-bg);
     padding: 2px 5px;
     border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    opacity: 0; /* Başlangıçta gizli */
+    box-shadow: var(--message-action-shadow);
+    opacity: 0;             /* Başlangıçta gizli */
     visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-    z-index: 10; /* Diğer içeriklerin üzerinde */
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;            /* Üstte kalması için */
+    position: absolute;     /* MUTLAK KONUMLANDIRMA */
+    top: -10px;             /* Balonun biraz üstünde */
+    /* Left/Right positioning will be set per message type */
 }
 
 /* Mesaj üzerine gelince butonları göster */
@@ -781,34 +1033,91 @@ body {
     visibility: visible;
 }
 
-/* Kullanıcı mesajlarında butonlar sola gelsin */
-.user-message .message-actions {
-    right: auto; /* Sağı iptal et */
-    left: 0px; /* Sola yasla */
-    top: -5px;
+/* AI Mesajları: Butonları solda, avatar sonrası hizala */
+.ai-message .message-actions {
+    left: calc(var(--avatar-base-size) + 10px); /* Avatar genişliği + boşluk */
+    right: auto;
 }
 
+/* Kullanıcı Mesajları: Butonları sağda, avatar öncesi hizala */
+.user-message .message-actions {
+    right: calc(var(--avatar-base-size) + 10px); /* Avatar genişliği + boşluk */
+    left: auto;
+}
+/* --- Bitiş: Mesaj Aksiyon Butonları --- */
+
+
+/* --- Mesaj Aksiyon Butonlarının Stilleri (değişiklik yok) --- */
 .message-action-btn {
     background: none;
     border: none;
-    color: var(--text-light);
-    font-size: 0.85em; /* Biraz küçük */
+    color: var(--text-light); /* Variable used */
+    font-size: 0.85em;
     cursor: pointer;
-    padding: 3px 4px; /* Küçük tıklama alanı */
+    padding: 3px 4px;
     border-radius: 3px;
     line-height: 1;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s; /* Keep faster hover transition */
 }
 
 .message-action-btn:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--text-color);
+    background-color: var(--message-action-hover-bg); /* Variable used */
+    color: var(--text-color); /* Variable used */
 }
 .message-action-btn i {
-    display: block; /* İkonu tam ortala */
+    display: block;
 }
-/* Silme butonu için özel renk (isteğe bağlı) */
+/* Silme butonu için özel renk */
 .message-action-btn.delete:hover {
-    color: var(--error-text);
-    background-color: rgba(163, 26, 26, 0.1);
+    color: var(--message-action-delete-hover-color); /* Variable used */
+    background-color: var(--message-action-delete-hover-bg); /* Variable used */
 }
+
+
+/* --- YENİ: İçe Aktarma Seçenekleri Modalı İçin Ek Stiller --- */
+.import-strategy-container {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: left; /* İçeriği sola yasla */
+}
+
+.import-strategy-container label {
+    display: inline-block; /* Select ile aynı satırda */
+    margin-right: 10px;
+    margin-bottom: 8px; /* Alt boşluk */
+    font-weight: bold; /* Label'ı biraz vurgula */
+    color: var(--text-color); /* Ana metin rengi */
+}
+
+#import-history-strategy-select { /* ID Düzeltildi (import-history-strategy-select yerine) */
+    /* Genişliği ayarlayabiliriz veya %100 bırakabiliriz */
+    /* width: auto; */
+    padding: 8px 10px;
+    min-width: 250px; /* Minimum genişlik */
+    /* Modal içindeki diğer select'lerle aynı görünmesi için */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    cursor: pointer; /* Seçim olduğunu belirt */
+}
+#import-history-strategy-select:focus { /* ID Düzeltildi */
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+
+#import-strategy-desc {
+    display: block; /* Yeni satıra geç */
+    margin-top: 8px; /* Select'ten sonra boşluk */
+    font-size: 0.85em;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+/* --- Bitiş: İçe Aktarma Seçenekleri Stilleri --- */
+
+
+/* --- END OF FILE style.css --- */
