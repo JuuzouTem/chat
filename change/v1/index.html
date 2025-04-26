@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakter JSON Dönüştürücü V1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Karakter JSON Dönüştürücü V1</h1>
+        <p>Farklı formattaki (örn: Perchance Dexie formatı) karakter JSON dosyanızı buraya sürükleyip bırakın veya tıklayarak seçin. Dosya, uygulamanızın kullandığı <code>AIChatCharacterData</code> formatına dönüştürülecektir.</p>
+
+        <div id="drop-zone">
+            <p>JSON Dosyasını Buraya Sürükleyin veya Seçmek İçin Tıklayın</p>
+            <input type="file" id="file-input" accept=".json" style="display: none;">
+        </div>
+
+        <div id="status"></div>
+
+        <button id="download-btn" style="display: none;">Dönüştürülmüş Dosyayı İndir</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
