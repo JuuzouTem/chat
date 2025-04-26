@@ -10,7 +10,10 @@
 </head>
 <body>
     <div class="security-warning">
-        <strong>⚠️ GÜVENLİK UYARISI:</strong> API anahtarlarınızı tarayıcıya girmek risklidir. Bu aracı yalnızca güvendiğiniz kişisel cihazlarda kullanın. Anahtarlar tarayıcınızın Local Storage'ında saklanır.
+        <span> <!-- Wrap text for better layout -->
+            <strong>⚠️ GÜVENLİK UYARISI:</strong> API anahtarlarınızı tarayıcıya girmek risklidir. Bu aracı yalnızca güvendiğiniz kişisel cihazlarda kullanın. Anahtarlar tarayıcınızın Local Storage'ında saklanır.
+        </span>
+        <button id="close-warning-btn" class="close-warning-btn" title="Uyarıyı Kapat">×</button>
     </div>
 
     <div class="app-container">
@@ -18,11 +21,14 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <button id="new-character-btn" class="icon-button" title="Yeni Karakter Oluştur"><i class="fas fa-plus"></i></button>
-                <button id="import-btn" class="icon-button" title="İçe Aktar (Karakterler)"><i class="fas fa-folder-open"></i></button>
+                <button id="import-btn" class="icon-button" title="İçe Aktar (Karakterler)"><i class="fas fa-folder-open"></i></button> <!-- Bu buton dosya girişini tetikler -->
                 <button id="export-btn" class="icon-button" title="Dışa Aktar (Karakterler)"><i class="fas fa-save"></i></button>
                 <button id="settings-btn" class="icon-button" title="Genel Ayarlar"><i class="fas fa-cog"></i></button>
+                <button id="theme-toggle-btn" class="icon-button" title="Karanlık Moda Geç">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
-             <div class="sidebar-title"> <!-- Başlık için ayrı div -->
+             <div class="sidebar-title">
                  <h2>Karakterler</h2>
              </div>
             <ul id="character-list" class="character-list">
@@ -77,7 +83,8 @@
                     <small>Bu, AI'nın nasıl davranacağını tanımlayan en önemli alandır.</small>
 
                     <label for="char-initial-message">Başlangıç Mesajları (Her satır bir mesaj):</label>
-                    <textarea id="char-initial-message" rows="4" placeholder="[AI]: Merhaba! Ben {{char}}.&#10;[AI]: Size nasıl yardımcı olabilirim?"></textarea>
+                    <textarea id="char-initial-message" rows="4" placeholder="[AI]: Merhaba! Ben {{char}}.
+[AI]: Size nasıl yardımcı olabilirim?"></textarea>
                     <small>Sohbet başladığında AI'nın söyleyeceği ilk mesajlar. İsteğe bağlı olarak `[AI]: ` ile başlayabilirsiniz.</small>
                 </fieldset>
 
@@ -152,17 +159,19 @@
                     <fieldset>
                         <legend>Stil ve Görünüm</legend>
                         <label for="char-avatar-size">Karakter Avatar Boyutu (Çarpan):</label>
-                         <input type="number" id="char-avatar-size" min="0.5" max="5" step="0.1" placeholder="1">
+                         <input type="number" id="char-avatar-size" min="0.5" step="0.1" placeholder="1">
                          <small>Varsayılan boyuta göre çarpan (örn: 1.5 = %150 büyük). Boş bırakırsanız varsayılan (1).</small>
 
                          <label for="char-avatar-shape">Karakter Avatar Şekli:</label>
                          <select id="char-avatar-shape">
                             <option value="round">Yuvarlak</option>
                             <option value="square">Kare</option>
+                            <option value="rectangle-v">Dikdörtgen (Dikey)</option>
+                            <option value="rectangle-h">Dikdörtgen (Yatay)</option>
                          </select>
 
                          <label for="char-user-avatar-size">Kullanıcı Avatar Boyutu (Çarpan):</label>
-                         <input type="number" id="char-user-avatar-size" min="0.5" max="5" step="0.1" placeholder="Varsayılan">
+                         <input type="number" id="char-user-avatar-size" min="0.5" step="0.1" placeholder="Varsayılan">
                          <small>Varsayılan kullanıcı avatar boyutuna göre çarpan. Boş bırakırsanız varsayılan (1).</small>
 
                          <label for="char-user-avatar-shape">Kullanıcı Avatar Şekli:</label>
@@ -170,6 +179,8 @@
                              <option value="default">Varsayılan (Karakterle aynı)</option>
                              <option value="round">Yuvarlak</option>
                              <option value="square">Kare</option>
+                             <option value="rectangle-v">Dikdörtgen (Dikey)</option>
+                             <option value="rectangle-h">Dikdörtgen (Yatay)</option>
                          </select>
                         <hr style="margin: 15px 0;">
                         <label for="char-message-style">Varsayılan Mesaj Stili (CSS - Gelecek Özellik):</label>
@@ -183,55 +194,45 @@
                         <input type="url" id="char-audio-url" placeholder="https://example.com/music.mp3" disabled>
                     </fieldset>
 
-                     <!-- Image Generation (Placeholder functionality) -->
-                    <fieldset disabled> <!-- Şimdilik devre dışı -->
+                     <!-- Placeholder Fieldsets (Disabled) -->
+                    <fieldset disabled>
                          <legend>Görsel Üretimi (Gelecek Özellikler)</legend>
                          <label for="char-img-prompt-start">Görsel İstek Başlangıcı:</label>
-                         <textarea id="char-img-prompt-start" rows="2" placeholder="AI'nın üreteceği görseller için promptun başına eklenir."></textarea>
+                         <textarea id="char-img-prompt-start" rows="2"></textarea>
                          <label for="char-img-prompt-end">Görsel İstek Sonu:</label>
-                         <textarea id="char-img-prompt-end" rows="2" placeholder="AI'nın üreteceği görseller için promptun sonuna eklenir."></textarea>
+                         <textarea id="char-img-prompt-end" rows="2"></textarea>
                          <label for="char-img-triggers">Görsel Tetikleyici Kelimeler:</label>
-                         <textarea id="char-img-triggers" rows="2" placeholder="*kelime = açıklama (Her satıra bir tane)"></textarea>
+                         <textarea id="char-img-triggers" rows="2"></textarea>
                     </fieldset>
-
-                     <!-- Memory & Context (Placeholder functionality) -->
-                     <fieldset disabled> <!-- Şimdilik devre dışı -->
+                     <fieldset disabled>
                          <legend>Hafıza ve Bağlam (Gelecek Özellikler)</legend>
-                         <label for="char-lorebooks">Lorebook URL'leri (txt, her satır bir giriş):</label>
-                         <textarea id="char-lorebooks" rows="3" placeholder="https://example.com/world-info.txt"></textarea>
-                         <small>Karakterin dünyası hakkında bilgi dosyaları.</small>
-
-                         <label for="char-context-method">Bağlam Sınırı Yönetimi:</label>
+                         <label for="char-lorebooks">Lorebook URL'leri:</label>
+                         <textarea id="char-lorebooks" rows="3"></textarea>
+                         <label for="char-context-method">Bağlam Yönetimi:</label>
                          <select id="char-context-method">
-                             <option value="summarize">En eski mesajları özetle</option>
-                             <option value="truncate">En eski mesajları sil</option>
+                             <option value="summarize">Özetle</option>
+                             <option value="truncate">Sil</option>
                          </select>
-
                          <label for="char-extended-memory">Uzun Süreli Hafıza:</label>
                          <select id="char-extended-memory">
                              <option value="disabled">Devre Dışı</option>
-                             <option value="enabled">Aktif (Daha yavaş olabilir)</option>
+                             <option value="enabled">Aktif</option>
                          </select>
                      </fieldset>
-
-                     <!-- Misc Advanced (Placeholder functionality) -->
-                     <fieldset disabled> <!-- Şimdilik devre dışı -->
+                     <fieldset disabled>
                          <legend>Diğer Gelişmiş Ayarlar (Gelecek Özellikler)</legend>
-                         <label for="char-shortcuts">Kısayol Butonları (Giriş Alanı Üstü):</label>
-                         <textarea id="char-shortcuts" rows="3" placeholder="@name=İsim @message=Mesaj"></textarea>
-
-                         <label for="char-custom-js">Özel JavaScript Kodu:</label>
-                         <textarea id="char-custom-js" rows="3" placeholder="// Gelişmiş kullanıcılar için"></textarea>
-
+                         <label for="char-shortcuts">Kısayol Butonları:</label>
+                         <textarea id="char-shortcuts" rows="3"></textarea>
+                         <label for="char-custom-js">Özel JavaScript:</label>
+                         <textarea id="char-custom-js" rows="3"></textarea>
                          <label for="char-input-placeholder">Giriş Alanı Yer Tutucusu:</label>
-                         <input type="text" id="char-input-placeholder" placeholder="{{char}} için mesaj yazın...">
-
+                         <input type="text" id="char-input-placeholder">
                          <label for="char-social-title">Sosyal Medya Başlığı:</label>
-                         <input type="text" id="char-social-title" placeholder="Paylaşım önizleme başlığı">
+                         <input type="text" id="char-social-title">
                          <label for="char-social-desc">Sosyal Medya Açıklaması:</label>
-                         <input type="text" id="char-social-desc" placeholder="Paylaşım önizleme açıklaması">
+                         <input type="text" id="char-social-desc">
                          <label for="char-social-image">Sosyal Medya Resmi URL:</label>
-                         <input type="url" id="char-social-image" placeholder="Paylaşım önizleme resmi">
+                         <input type="url" id="char-social-image">
                      </fieldset>
 
                 </div> <!-- End #more-character-settings -->
@@ -244,7 +245,7 @@
         </div>
     </div>
 
-    <!-- Ayarlar Modalı (Hugging Face Eklendi) -->
+    <!-- Ayarlar Modalı -->
     <div id="settings-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('settings-modal')">×</span>
@@ -254,7 +255,6 @@
                  <legend>Kullanıcı Bilgileri (Genel)</legend>
                  <label for="user-nickname">Takma Adınız:</label>
                  <input type="text" id="user-nickname" placeholder="Varsayılan: User">
-
                  <label for="user-avatar">Avatar URL'niz:</label>
                  <input type="url" id="user-avatar" placeholder="https://example.com/your_avatar.png">
              </fieldset>
@@ -290,12 +290,10 @@
                         <label for="qwenApiKey">Qwen:</label>
                         <input type="password" id="qwenApiKey" placeholder="sk-...">
                     </div>
-                    <!-- YENİ HUGGING FACE ALANI -->
                     <div class="provider-settings">
                         <label for="huggingfaceApiKey">HuggingFace:</label>
                         <input type="password" id="huggingfaceApiKey" placeholder="hf_...">
                     </div>
-                    <!-- /YENİ HUGGING FACE ALANI -->
                 </div>
             </fieldset>
              <div class="modal-buttons">
@@ -304,6 +302,32 @@
              </div>
         </div>
     </div>
+
+    <!-- YENİ: İçe Aktarma Seçenekleri Modalı (GÜNCELLENDİ) -->
+    <div id="import-options-modal" class="modal">
+        <div class="modal-content">
+            <h2>İçe Aktarma Seçenekleri</h2>
+            <p>Bu dosyada, mevcut karakterlerinizle aynı ID'ye sahip bir veya daha fazla karakter bulundu. Bu çakışan karakterler için mevcut sohbet geçmişleri ne yapılsın?</p>
+            <p><strong>Not:</strong> Karakter bilgileri (isim, açıklama vb.) her durumda dosyadan gelenle güncellenecektir.</p>
+
+            <div class="import-strategy-container">
+                <label for="import-history-strategy-select">Çakışan Karakterlerin Geçmişi:</label>
+                <select id="import-history-strategy-select">
+                    <option value="keep_history" selected>Mevcut Geçmişi Koru</option>
+                    <option value="overwrite_history">Mevcut Geçmişi Sil / Üzerine Yaz</option>
+                </select>
+                 <small id="import-strategy-desc">
+                     'Koru' seçeneği, çakışan karakterin mevcut sohbet geçmişini değiştirmez. 'Sil/Üzerine Yaz' seçeneği, mevcut geçmişi siler ve varsa dosyadan gelen geçmişi yükler.
+                 </small>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" id="confirm-import-btn">Seçenekle Devam Et</button>
+                <button type="button" class="cancel-btn" onclick="closeImportOptionsModal()">İptal</button>
+            </div>
+        </div>
+    </div>
+    <!-- Bitiş: İçe Aktarma Seçenekleri Modalı -->
 
     <script src="script.js"></script>
 </body>
