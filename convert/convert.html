@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Karakter Veri Dönüştürücü Hub</title>
+    <link rel="stylesheet" href="convert.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Karakter Veri Dönüştürücü Hub</h1>
+        <p>İhtiyacınız olan dönüştürme aracını seçin ve ilgili JSON dosyasını yükleyin.</p>
+
+        <div class="navigation-buttons">
+            <button class="nav-btn" data-target="converter-p1-ai">Perchance (V1) → AIChat</button>
+            <button class="nav-btn" data-target="converter-p2-ai">Perchance (V2) → AIChat</button>
+            <button class="nav-btn" data-target="converter-ai-p">AIChat → Perchance</button>
+        </div>
+
+        <!-- Converter Section: Perchance V1 to AIChat -->
+        <div id="converter-p1-ai" class="converter-section">
+            <h2>Perchance Dexie (V1 - ID'li) → AIChat Formatı</h2>
+            <p>Perchance Dexie formatındaki (V1 - ID üretimi eklenmiş) karakter JSON dosyanızı yükleyin. Dosya <code>AIChatCharacterData</code> formatına dönüştürülecektir.</p>
+            <div id="drop-zone-p1-ai" class="drop-zone">
+                <p>V1 JSON Dosyasını Buraya Sürükleyin veya Seçmek İçin Tıklayın</p>
+                <input type="file" id="file-input-p1-ai" accept=".json" style="display: none;">
+            </div>
+            <div id="status-p1-ai" class="status"></div>
+            <button id="download-btn-p1-ai" class="download-btn" style="display: none;">Dönüştürülmüş AIChat Dosyasını İndir</button>
+        </div>
+
+        <!-- Converter Section: Perchance V2 to AIChat -->
+        <div id="converter-p2-ai" class="converter-section">
+            <h2>Perchance Dexie (V2 - Geçmişli) → AIChat Formatı</h2>
+            <p>Perchance Dexie formatındaki (V2 - Sohbet geçmişi dahil) karakter JSON dosyanızı yükleyin. Dosya <code>AIChatCharacterAndHistoryData</code> formatına dönüştürülecektir.</p>
+            <div id="drop-zone-p2-ai" class="drop-zone">
+                <p>V2 JSON Dosyasını Buraya Sürükleyin veya Seçmek İçin Tıklayın</p>
+                <input type="file" id="file-input-p2-ai" accept=".json" style="display: none;">
+            </div>
+            <div id="status-p2-ai" class="status"></div>
+            <button id="download-btn-p2-ai" class="download-btn" style="display: none;">Dönüştürülmüş AIChat Dosyasını (Geçmişli) İndir</button>
+        </div>
+
+        <!-- Converter Section: AIChat to Perchance -->
+        <div id="converter-ai-p" class="converter-section">
+            <h2>AIChat Formatı → Perchance Dexie Formatı</h2>
+            <p><code>AIChatCharacterData</code> veya <code>AIChatCharacterAndHistoryData</code> formatındaki JSON dosyanızı yükleyin. Dosya, Perchance tabanlı uygulamaların kullandığı <code>Dexie</code> formatına dönüştürülecektir.</p>
+            <div id="drop-zone-ai-p" class="drop-zone">
+                <p>AIChat JSON Dosyasını Buraya Sürükleyin veya Seçmek İçin Tıklayın</p>
+                <input type="file" id="file-input-ai-p" accept=".json" style="display: none;">
+            </div>
+            <div id="status-ai-p" class="status"></div>
+            <button id="download-btn-ai-p" class="download-btn" style="display: none;">Dönüştürülmüş Perchance Dosyasını İndir</button>
+        </div>
+
+    </div>
+
+    <script src="convert.js"></script>
+</body>
+</html>

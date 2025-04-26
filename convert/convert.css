@@ -1,0 +1,152 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Keep content starting from top */
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px; /* Add horizontal padding too */
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 700px; /* Slightly wider for better layout */
+    width: 95%;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.nav-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+}
+
+.nav-btn:active {
+    transform: scale(0.98);
+}
+
+.nav-btn.active {
+    background-color: #0056b3;
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
+
+
+/* Converter Section Styling */
+.converter-section {
+    display: none; /* Hide sections by default */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 25px;
+    background-color: #fdfdfd;
+}
+
+.converter-section.active {
+    display: block; /* Show the active section */
+}
+
+/* Drop Zone Styling */
+.drop-zone { /* Renamed from #drop-zone */
+    border: 3px dashed #007bff;
+    border-radius: 8px;
+    padding: 40px 20px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.drop-zone p {
+    margin: 0;
+    font-size: 1.1em;
+    color: #007bff;
+    pointer-events: none; /* Prevent text from interfering with clicks */
+}
+
+.drop-zone.drag-over {
+    background-color: #e9ecef;
+    border-color: #0056b3;
+}
+
+/* Status Styling */
+.status { /* Renamed from #status */
+    margin-top: 20px;
+    margin-bottom: 15px; /* Add some space below */
+    font-weight: bold;
+    min-height: 1.2em; /* Prevent layout jumps */
+}
+
+.status.success {
+    color: #28a745;
+}
+
+.status.error {
+    color: #dc3545;
+}
+
+/* Download Button Styling */
+.download-btn { /* Renamed from #download-btn */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    /* margin-top: 20px; Removed, spacing handled by status div margin */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Set via JS */
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
+
+.download-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
